@@ -1,0 +1,16 @@
+gwl               float64
+pH                 object
+E.C                 int64
+TDS               float64
+CO3               float64
+HCO3              float64
+Cl                  int64
+F                 float64
+NO3               float64
+SO4               float64
+Na                float64
+K                 float64
+Ca                float64
+Mg                float64
+T.H               float64
+SAR               float64
