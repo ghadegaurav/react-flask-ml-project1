@@ -6,6 +6,7 @@ const App = () => {
     'Na', 'K', 'Ca', 'Mg', 'T.H', 'SAR']
   
   const [isLoaded, setIsLoaded] = useState(true)
+  const [isError, setIsError] = useState(false)
   // const [formData, setFormData] = useState(Array(16).fill(''))
   const [formData, setFormData] = useState([5.66, 8.02, 420, 275.3, 0.0, 153.3, 12, 0.55, 11.200, 37, 25, 1.0, 33.0, 20.5, 160.3, 0.938])
   const [prediction, setPrediction] = useState('Submit to predict the quality')
@@ -26,9 +27,13 @@ const App = () => {
     })
       .then((response) => {
         setPrediction(response.data.prediction);
-        setIsLoaded(true)// Assuming prediction is in response.data.prediction
+        setIsLoaded(true)
+        setIsError(false)// Assuming prediction is in response.data.prediction
       })
       .catch((error) => {
+        setIsError(true)// Assuming prediction is in response.data.prediction
+        setIsLoaded(true)
+        setPrediction(error.message);
         console.error(error);
       });
   };
@@ -63,7 +68,7 @@ const App = () => {
           <span className="visually-hidden">Loading...</span>
           </div>
             :
-        <p>{prediction}</p>
+        <p className={isError?"error":"noerror"}>{prediction}</p>
         }
         
       </form>
